@@ -20,13 +20,200 @@
             overflow-x: hidden;
         }
 
+        /* === التعديلات المطلوبة === */
+        
+        /* كل لعبة تأخذ حجم الصفحة الكاملة */
+        .full-page-game {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: #0a0a0a;
+            z-index: 1000;
+            display: none;
+            overflow-y: auto;
+        }
+        
+        .full-page-game.active {
+            display: block;
+        }
+        
+        .full-page-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .game-header-container {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px 0;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .full-page-game-image {
+            width: 100%;
+            max-width: 100px; /* نفس حجم الصفحة الأولى */
+            height: 100px; /* نفس حجم الصفحة الأولى */
+            margin: 0 auto 40px;
+            border-radius: 10px; /* نفس نصف قطر الزواية في الصفحة الأولى */
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .full-page-game-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* نفس الخاصية في الصفحة الأولى */
+        }
+        
+        .full-page-game-title {
+            font-size: 48px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+        }
+        
+        .game-info-container {
+            flex: 1;
+            background: rgba(40, 40, 40, 0.8);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .close-game-btn {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1001;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .close-game-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+        
+        .download-full-page-btn {
+            background: linear-gradient(to right, #2ecc71, #27ae60) !important;
+            color: white;
+            border: none;
+            padding: 25px 40px;
+            border-radius: 15px;
+            font-weight: 900;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            width: 100%;
+            margin-top: 20px;
+            border: 3px solid #27ae60 !important;
+            box-shadow: 0 10px 30px rgba(39, 174, 96, 0.4);
+        }
+        
+        .download-full-page-btn:hover {
+            background: linear-gradient(to right, #27ae60, #219653) !important;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(39, 174, 96, 0.6);
+            border-color: #219653 !important;
+        }
+        
+        /* === نفس حجم صور الألعاب كما في الصفحة الأولى === */
+        .game-card .game-image img {
+            width: 100px; /* نفس العرض في الصفحة الأولى */
+            height: 100px; /* نفس الارتفاع في الصفحة الأولى */
+            object-fit: cover; /* نفس الخاصية في الصفحة الأولى */
+            border-radius: 10px; /* نفس نصف قطر الزواية في الصفحة الأولى */
+        }
+        
+        .game-image {
+            width: 100px; /* نفس العرض في الصفحة الأولى */
+            height: 100px; /* نفس الارتفاع في الصفحة الأولى */
+            border-radius: 10px; /* نفس نصف قطر الزواية في الصفحة الأولى */
+            overflow: hidden;
+            margin: 0 auto 15px; /* توسيط الصورة */
+            position: relative;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        /* === التعديل: جميع المنصات تصبح Android و iPhone فقط === */
+        .platforms {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        /* === التعديل: جميع المنصات باللون الأحمر === */
+        .platform-tag {
+            background: rgba(255, 0, 0, 0.2) !important; /* الأحمر */
+            color: #ff3333 !important; /* الأحمر */
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            border: 1px solid rgba(255, 0, 0, 0.3) !important; /* الأحمر */
+            transition: all 0.3s ease;
+        }
+        
+        .platform-tag.android {
+            background: rgba(255, 0, 0, 0.3) !important; /* الأحمر */
+            color: #ff6666 !important; /* الأحمر */
+            border-color: rgba(255, 0, 0, 0.4) !important; /* الأحمر */
+        }
+        
+        .platform-tag.iphone {
+            background: rgba(255, 0, 0, 0.3) !important; /* الأحمر */
+            color: #ff6666 !important; /* الأحمر */
+            border-color: rgba(255, 0, 0, 0.4) !important; /* الأحمر */
+        }
+        
+        .platform-tag:hover {
+            background: rgba(255, 0, 0, 0.4) !important; /* الأحمر */
+            transform: scale(1.1);
+            color: #ff9999 !important; /* الأحمر الفاتح */
+        }
+        
+        /* إزالة ألوان المنصات الأخرى */
+        .platform-tag.pc,
+        .platform-tag.ps4,
+        .platform-tag.ps5,
+        .platform-tag.xbox,
+        .platform-tag.switch {
+            background: rgba(255, 0, 0, 0.2) !important; /* الأحمر */
+            color: #ff3333 !important; /* الأحمر */
+            border-color: rgba(255, 0, 0, 0.3) !important; /* الأحمر */
+        }
+        
+        /* بقية الأنماط الأصلية تبقى كما هي */
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        /* Loading Screen */
         .loading-screen {
             position: fixed;
             top: 0;
@@ -92,7 +279,6 @@
             }
         }
 
-        /* Progress Bar */
         .progress-container {
             width: 300px;
             height: 4px;
@@ -116,7 +302,6 @@
             }
         }
 
-        /* Welcome Animation */
         .welcome-animation {
             position: fixed;
             top: 50%;
@@ -150,7 +335,6 @@
             }
         }
 
-        /* Main Content */
         .main-content {
             opacity: 0;
             animation: contentFadeIn 1s ease forwards 4s;
@@ -162,7 +346,6 @@
             }
         }
 
-        /* Header */
         .header {
             text-align: center;
             padding: 40px 0;
@@ -194,7 +377,6 @@
             margin-bottom: 30px;
         }
 
-        /* Game Cards */
         .games-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -205,15 +387,19 @@
         .game-card {
             background: rgba(40, 40, 40, 0.9);
             border-radius: 8px;
-            padding: 20px;
+            padding: 15px; /* نفس padding في الصفحة الأولى */
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
             position: relative;
-            min-height: 320px;
+            min-height: 250px; /* تقليل الارتفاع ليناسب الصورة الصغيرة */
             display: flex;
             flex-direction: column;
             opacity: 0;
             transform: translateY(30px);
+            cursor: pointer;
+            text-align: center; /* توسيط المحتوى */
+            width: 200px; /* نفس العرض في الصفحة الأولى */
+            margin: 0 auto; /* توسيط البطاقة */
         }
 
         .game-card.visible {
@@ -225,23 +411,6 @@
             transform: translateY(-8px);
             border-color: rgba(255, 255, 255, 0.3);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-        }
-
-        .game-image {
-            width: 100%;
-            height: 150px;
-            border-radius: 6px;
-            overflow: hidden;
-            margin-bottom: 15px;
-            position: relative;
-            background: rgba(0, 0, 0, 0.3);
-        }
-
-        .game-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
         }
 
         .game-card:hover .game-image img {
@@ -273,67 +442,6 @@
             font-size: 14px;
         }
 
-        .platforms {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-
-        .platform-tag {
-            background: rgba(100, 100, 100, 0.3);
-            color: #cccccc;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: 600;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .platform-tag.android {
-            background: rgba(61, 220, 132, 0.2);
-            color: #3ddc84;
-            border-color: rgba(61, 220, 132, 0.3);
-        }
-
-        .platform-tag.iphone {
-            background: rgba(0, 122, 255, 0.2);
-            color: #007aff;
-            border-color: rgba(0, 122, 255, 0.3);
-        }
-
-        .platform-tag.pc {
-            background: rgba(255, 140, 0, 0.2);
-            color: #ff8c00;
-            border-color: rgba(255, 140, 0, 0.3);
-        }
-
-        .platform-tag.ps4 {
-            background: rgba(0, 102, 255, 0.2);
-            color: #0066ff;
-            border-color: rgba(0, 102, 255, 0.3);
-        }
-
-        .platform-tag.ps5 {
-            background: rgba(0, 102, 255, 0.3);
-            color: #3399ff;
-            border-color: rgba(0, 102, 255, 0.4);
-        }
-
-        .platform-tag.xbox {
-            background: rgba(16, 124, 16, 0.2);
-            color: #107c10;
-            border-color: rgba(16, 124, 16, 0.3);
-        }
-
-        .platform-tag:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: scale(1.1);
-        }
-
-        /* زر التحميل - أخضر */
         .download-btn {
             background: linear-gradient(to right, #2ecc71, #27ae60) !important;
             color: white;
@@ -368,7 +476,6 @@
             margin-right: 5px;
         }
 
-        /* زر CapCut Pro - خاص */
         .capcut-btn {
             background: linear-gradient(to right, #ff69b4, #8a2be2) !important;
             border-color: #8a2be2 !important;
@@ -380,7 +487,6 @@
             box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3) !important;
         }
 
-        /* زر Coming Soon - رمادي */
         .coming-soon-btn {
             background: linear-gradient(to right, #444, #666) !important;
             border-color: #666 !important;
@@ -388,7 +494,6 @@
             opacity: 0.7;
         }
 
-        /* Game Count - من 1 إلى 23 */
         .game-count {
             position: absolute;
             top: 15px;
@@ -413,7 +518,6 @@
             50% { transform: scale(1.1); }
         }
 
-        /* Section Titles */
         .section-title {
             color: #ffffff;
             font-size: 28px;
@@ -451,7 +555,6 @@
             50% { opacity: 1; }
         }
 
-        /* Footer */
         .footer {
             background: rgba(30, 30, 30, 0.9);
             padding: 60px 40px;
@@ -530,7 +633,6 @@
             letter-spacing: 2px;
         }
 
-        /* Special app styles */
         .special-app {
             background: linear-gradient(45deg, rgba(255, 105, 180, 0.1), rgba(138, 43, 226, 0.1));
             border-color: rgba(255, 105, 180, 0.3);
@@ -541,7 +643,6 @@
             text-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
         }
 
-        /* Responsive */
         @media (max-width: 1200px) {
             .games-grid {
                 grid-template-columns: repeat(4, 1fr);
@@ -559,6 +660,10 @@
             
             .logo-text {
                 font-size: 60px;
+            }
+            
+            .full-page-game-title {
+                font-size: 36px;
             }
         }
 
@@ -584,6 +689,10 @@
             .welcome-animation {
                 font-size: 40px;
             }
+            
+            .full-page-game-title {
+                font-size: 28px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -602,9 +711,16 @@
             .logo-text {
                 font-size: 32px;
             }
+            
+            .full-page-game-title {
+                font-size: 24px;
+            }
+            
+            .game-info-container {
+                padding: 20px;
+            }
         }
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 10px;
         }
@@ -638,6 +754,76 @@
     <!-- Welcome Animation -->
     <div class="welcome-animation">WELCOME</div>
 
+    <!-- === صفحات الألعاب بالحجم الكامل === -->
+    <!-- Game 1 - NARUTO: ULTIMATE NINJA STORM -->
+    <div class="full-page-game" id="game-page-1">
+        <div class="close-game-btn" onclick="closeFullPageGame()">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="full-page-content">
+            <div class="game-header-container">
+                <h1 class="full-page-game-title">NARUTO: ULTIMATE NINJA STORM</h1>
+            </div>
+            <div class="full-page-game-image">
+                <img src="https://apkvision.org/wp-content/uploads/2024/09/naruto-ultimate-ninja-storm-140x140.png" alt="NARUTO: ULTIMATE NINJA STORM">
+            </div>
+            <div class="game-info-container">
+                <p style="font-size: 18px; line-height: 1.6; margin-bottom: 30px; color: #cccccc;">
+                    NARUTO: Ultimate Ninja STORM brings the excitement of Naruto's childhood adventures to smartphones with stunning 3D graphics and engaging gameplay. The app features Ultimate Mission Mode, allowing players to explore the Hidden Leaf Village and undertake missions, as well as Free Battle Mode, where they can select from 25 characters and 10 support characters to unleash powerful ninjutsu in combat.
+                </p>
+                <button class="download-full-page-btn" onclick="openLocker()">
+                    <i class="fas fa-download"></i> DOWNLOAD NOW
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game 2 - SONS OF THE FOREST -->
+    <div class="full-page-game" id="game-page-2">
+        <div class="close-game-btn" onclick="closeFullPageGame()">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="full-page-content">
+            <div class="game-header-container">
+                <h1 class="full-page-game-title">SONS OF THE FOREST</h1>
+            </div>
+            <div class="full-page-game-image">
+                <img src="https://i.ibb.co/0yrcN1yr/icon.webp" alt="SONS OF THE FOREST">
+            </div>
+            <div class="game-info-container">
+                <p style="font-size: 18px; line-height: 1.6; margin-bottom: 30px; color: #cccccc;">
+                    Get the free download for Sons Of The Forest for PC, the highly anticipated sequel to The Forest. This open-world survival horror crafting game plunges you into a terrifying new adventure on a remote, cannibal-infested island. Experience the latest version of this intense PC game where you must build, craft, and fight to survive against mutated creatures.
+                </p>
+                <button class="download-full-page-btn" onclick="openLocker()">
+                    <i class="fas fa-download"></i> DOWNLOAD NOW
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game 3 - PS4 SIMULATOR -->
+    <div class="full-page-game" id="game-page-3">
+        <div class="close-game-btn" onclick="closeFullPageGame()">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="full-page-content">
+            <div class="game-header-container">
+                <h1 class="full-page-game-title">PS4 SIMULATOR</h1>
+            </div>
+            <div class="full-page-game-image">
+                <img src="https://i.ibb.co/Fqw7X930/icon.webp" alt="PS4 SIMULATOR">
+            </div>
+            <div class="game-info-container">
+                <p style="font-size: 18px; line-height: 1.6; margin-bottom: 30px; color: #cccccc;">
+                    Download the PS4 Simulator APK for Android to get the look and feel of the PlayStation 4 user interface on your mobile device. This popular simulation app mimics the PS4 menu, dynamic themes, icons, and sounds. While it's not an emulator and won't play PS4 games, the PS4 Simulator latest version provides the most authentic console experience for your phone.
+                </p>
+                <button class="download-full-page-btn" onclick="openLocker()">
+                    <i class="fas fa-download"></i> DOWNLOAD NOW
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Main Content -->
     <div class="main-content">
         <div class="container">
@@ -650,7 +836,7 @@
             <!-- First Row - الألعاب 1 إلى 5 -->
             <div class="games-grid" id="gamesGrid1">
                 <!-- Game 1 - NARUTO: ULTIMATE NINJA STORM -->
-                <div class="game-card">
+                <div class="game-card" onclick="openFullPageGame(1)">
                     <div class="game-count">1</div>
                     <div class="game-image">
                         <img src="https://apkvision.org/wp-content/uploads/2024/09/naruto-ultimate-ninja-storm-140x140.png" alt="NARUTO: ULTIMATE NINJA STORM" loading="lazy">
@@ -661,15 +847,14 @@
                     <div class="platforms">
                         <span class="platform-tag android">Android</span>
                         <span class="platform-tag iphone">iPhone</span>
-                        <span class="platform-tag ps4">PS4</span>
                     </div>
-                    <button class="download-btn" onclick="openLocker()">
+                    <button class="download-btn">
                         <i class="fas fa-download"></i> DOWNLOAD
                     </button>
                 </div>
 
                 <!-- Game 2 - SONS OF THE FOREST -->
-                <div class="game-card">
+                <div class="game-card" onclick="openFullPageGame(2)">
                     <div class="game-count">2</div>
                     <div class="game-image">
                         <img src="https://i.ibb.co/0yrcN1yr/icon.webp" alt="SONS OF THE FOREST" loading="lazy">
@@ -678,17 +863,16 @@
                         <h3 class="game-title">SONS OF THE FOREST</h3>
                     </div>
                     <div class="platforms">
-                        <span class="platform-tag pc">PC</span>
-                        <span class="platform-tag ps5">PS5</span>
-                        <span class="platform-tag xbox">XBOX</span>
+                        <span class="platform-tag android">Android</span>
+                        <span class="platform-tag iphone">iPhone</span>
                     </div>
-                    <button class="download-btn" onclick="openLocker()">
+                    <button class="download-btn">
                         <i class="fas fa-download"></i> DOWNLOAD
                     </button>
                 </div>
 
                 <!-- Game 3 - PS4 SIMULATOR -->
-                <div class="game-card">
+                <div class="game-card" onclick="openFullPageGame(3)">
                     <div class="game-count">3</div>
                     <div class="game-image">
                         <img src="https://i.ibb.co/Fqw7X930/icon.webp" alt="PS4 SIMULATOR" loading="lazy">
@@ -699,15 +883,14 @@
                     <div class="platforms">
                         <span class="platform-tag android">Android</span>
                         <span class="platform-tag iphone">iPhone</span>
-                        <span class="platform-tag pc">PC</span>
                     </div>
-                    <button class="download-btn" onclick="openLocker()">
+                    <button class="download-btn">
                         <i class="fas fa-download"></i> DOWNLOAD
                     </button>
                 </div>
 
                 <!-- Game 4 - MY SUMMER CAR -->
-                <div class="game-card">
+                <div class="game-card" onclick="openFullPageGame(4)">
                     <div class="game-count">4</div>
                     <div class="game-image">
                         <img src="https://i.ibb.co/p6YPgk61/icon.webp" alt="MY SUMMER CAR" loading="lazy">
@@ -716,16 +899,16 @@
                         <h3 class="game-title">MY SUMMER CAR</h3>
                     </div>
                     <div class="platforms">
-                        <span class="platform-tag pc">PC</span>
                         <span class="platform-tag android">Android</span>
+                        <span class="platform-tag iphone">iPhone</span>
                     </div>
-                    <button class="download-btn" onclick="openLocker()">
+                    <button class="download-btn">
                         <i class="fas fa-download"></i> DOWNLOAD
                     </button>
                 </div>
 
                 <!-- Game 5 - DIRT TRACKIN 2 -->
-                <div class="game-card">
+                <div class="game-card" onclick="openFullPageGame(5)">
                     <div class="game-count">5</div>
                     <div class="game-image">
                         <img src="https://i.ibb.co/XfXp9qvX/icon.webp" alt="DIRT TRACKIN 2" loading="lazy">
@@ -734,10 +917,10 @@
                         <h3 class="game-title">DIRT TRACKIN 2</h3>
                     </div>
                     <div class="platforms">
-                        <span class="platform-tag pc">PC</span>
                         <span class="platform-tag android">Android</span>
+                        <span class="platform-tag iphone">iPhone</span>
                     </div>
-                    <button class="download-btn" onclick="openLocker()">
+                    <button class="download-btn">
                         <i class="fas fa-download"></i> DOWNLOAD
                     </button>
                 </div>
@@ -746,7 +929,7 @@
             <!-- Second Row - الألعاب 6 إلى 10 -->
             <div class="games-grid" id="gamesGrid2">
                 <!-- Game 6 - MX BIKES -->
-                <div class="game-card">
+                <div class="game-card" onclick="openFullPageGame(6)">
                     <div class="game-count">6</div>
                     <div class="game-image">
                         <img src="https://i.ibb.co/XkMDF25B/mx-bikes-MX-Bikes-icon.jpg" alt="MX BIKES" loading="lazy">
@@ -755,16 +938,16 @@
                         <h3 class="game-title">MX BIKES</h3>
                     </div>
                     <div class="platforms">
-                        <span class="platform-tag pc">PC</span>
                         <span class="platform-tag android">Android</span>
+                        <span class="platform-tag iphone">iPhone</span>
                     </div>
-                    <button class="download-btn" onclick="openLocker()">
+                    <button class="download-btn">
                         <i class="fas fa-download"></i> DOWNLOAD
                     </button>
                 </div>
 
                 <!-- Game 7 - ASSETTO CORSA -->
-                <div class="game-card">
+                <div class="game-card" onclick="openFullPageGame(7)">
                     <div class="game-count">7</div>
                     <div class="game-image">
                         <img src="https://i.ibb.co/JR65S0C0/assetto-corsa-logo.jpg" alt="ASSETTO CORSA" loading="lazy">
@@ -773,17 +956,16 @@
                         <h3 class="game-title">ASSETTO CORSA</h3>
                     </div>
                     <div class="platforms">
-                        <span class="platform-tag pc">PC</span>
-                        <span class="platform-tag ps4">PS4</span>
-                        <span class="platform-tag xbox">XBOX</span>
+                        <span class="platform-tag android">Android</span>
+                        <span class="platform-tag iphone">iPhone</span>
                     </div>
-                    <button class="download-btn" onclick="openLocker()">
+                    <button class="download-btn">
                         <i class="fas fa-download"></i> DOWNLOAD
                     </button>
                 </div>
 
                 <!-- Game 8 - TENNIS CLASH -->
-                <div class="game-card">
+                <div class="game-card" onclick="openFullPageGame(8)">
                     <div class="game-count">8</div>
                     <div class="game-image">
                         <img src="https://i.ibb.co/b5fq6jyP/unnamed.webp" alt="TENNIS CLASH" loading="lazy">
@@ -795,13 +977,13 @@
                         <span class="platform-tag android">Android</span>
                         <span class="platform-tag iphone">iPhone</span>
                     </div>
-                    <button class="download-btn" onclick="openLocker()">
+                    <button class="download-btn">
                         <i class="fas fa-download"></i> DOWNLOAD
                     </button>
                 </div>
 
                 <!-- Game 9 - WATCH DOGS 2 -->
-                <div class="game-card">
+                <div class="game-card" onclick="openFullPageGame(9)">
                     <div class="game-count">9</div>
                     <div class="game-image">
                         <img src="https://i.ibb.co/mrD9VrqC/watch-dogs-2-download-Watch-Dogs-2.jpg" alt="WATCH DOGS 2" loading="lazy">
@@ -810,17 +992,16 @@
                         <h3 class="game-title">WATCH DOGS 2</h3>
                     </div>
                     <div class="platforms">
-                        <span class="platform-tag pc">PC</span>
-                        <span class="platform-tag ps4">PS4</span>
-                        <span class="platform-tag xbox">XBOX</span>
+                        <span class="platform-tag android">Android</span>
+                        <span class="platform-tag iphone">iPhone</span>
                     </div>
-                    <button class="download-btn" onclick="openLocker()">
+                    <button class="download-btn">
                         <i class="fas fa-download"></i> DOWNLOAD
                     </button>
                 </div>
 
                 <!-- Game 10 - UNCHARTED 4 -->
-                <div class="game-card">
+                <div class="game-card" onclick="openFullPageGame(10)">
                     <div class="game-count">10</div>
                     <div class="game-image">
                         <img src="https://i.ibb.co/HDqsxFbT/Uncharted-4-1.jpg" alt="UNCHARTED 4" loading="lazy">
@@ -829,11 +1010,10 @@
                         <h3 class="game-title">UNCHARTED 4</h3>
                     </div>
                     <div class="platforms">
-                        <span class="platform-tag ps4">PS4</span>
-                        <span class="platform-tag ps5">PS5</span>
-                        <span class="platform-tag pc">PC</span>
+                        <span class="platform-tag android">Android</span>
+                        <span class="platform-tag iphone">iPhone</span>
                     </div>
-                    <button class="download-btn" onclick="openLocker()">
+                    <button class="download-btn">
                         <i class="fas fa-download"></i> DOWNLOAD
                     </button>
                 </div>
@@ -842,7 +1022,7 @@
             <!-- Third Row - الألعاب 11 إلى 15 -->
             <div class="games-grid" id="gamesGrid3">
                 <!-- Game 11 - BASEBALL 9 -->
-                <div class="game-card">
+                <div class="game-card" onclick="openFullPageGame(11)">
                     <div class="game-count">11</div>
                     <div class="game-image">
                         <img src="https://i.ibb.co/My2brZNG/th.jpg" alt="BASEBALL 9" loading="lazy">
@@ -854,13 +1034,13 @@
                         <span class="platform-tag android">Android</span>
                         <span class="platform-tag iphone">iPhone</span>
                     </div>
-                    <button class="download-btn" onclick="openLocker()">
+                    <button class="download-btn">
                         <i class="fas fa-download"></i> DOWNLOAD
                     </button>
                 </div>
 
                 <!-- Game 12 - GEOMETRY DASH -->
-                <div class="game-card">
+                <div class="game-card" onclick="openFullPageGame(12)">
                     <div class="game-count">12</div>
                     <div class="game-image">
                         <img src="https://i.ibb.co/m52mB63f/geometry-dash-download-geometry-dash.jpg" alt="GEOMETRY DASH" loading="lazy">
@@ -871,15 +1051,14 @@
                     <div class="platforms">
                         <span class="platform-tag android">Android</span>
                         <span class="platform-tag iphone">iPhone</span>
-                        <span class="platform-tag pc">PC</span>
                     </div>
-                    <button class="download-btn" onclick="openLocker()">
+                    <button class="download-btn">
                         <i class="fas fa-download"></i> DOWNLOAD
                     </button>
                 </div>
 
                 <!-- Game 13 - GTA V -->
-                <div class="game-card">
+                <div class="game-card" onclick="openFullPageGame(13)">
                     <div class="game-count">13</div>
                     <div class="game-image">
                         <img src="https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png" alt="GTA V" loading="lazy">
@@ -888,18 +1067,16 @@
                         <h3 class="game-title">GTA V</h3>
                     </div>
                     <div class="platforms">
-                        <span class="platform-tag pc">PC</span>
-                        <span class="platform-tag ps4">PS4</span>
-                        <span class="platform-tag ps5">PS5</span>
-                        <span class="platform-tag xbox">XBOX</span>
+                        <span class="platform-tag android">Android</span>
+                        <span class="platform-tag iphone">iPhone</span>
                     </div>
-                    <button class="download-btn" onclick="openLocker()">
+                    <button class="download-btn">
                         <i class="fas fa-download"></i> DOWNLOAD
                     </button>
                 </div>
 
                 <!-- Game 14 - SKYRIM -->
-                <div class="game-card">
+                <div class="game-card" onclick="openFullPageGame(14)">
                     <div class="game-count">14</div>
                     <div class="game-image">
                         <img src="https://i.ibb.co/HTWvHV16/skyrim-together-mod-for-skyrim-logo.jpg" alt="SKYRIM" loading="lazy">
@@ -908,18 +1085,16 @@
                         <h3 class="game-title">SKYRIM</h3>
                     </div>
                     <div class="platforms">
-                        <span class="platform-tag pc">PC</span>
-                        <span class="platform-tag ps4">PS4</span>
-                        <span class="platform-tag xbox">XBOX</span>
-                        <span class="platform-tag switch">Switch</span>
+                        <span class="platform-tag android">Android</span>
+                        <span class="platform-tag iphone">iPhone</span>
                     </div>
-                    <button class="download-btn" onclick="openLocker()">
+                    <button class="download-btn">
                         <i class="fas fa-download"></i> DOWNLOAD
                     </button>
                 </div>
 
                 <!-- Game 15 - STARDEW VALLEY -->
-                <div class="game-card">
+                <div class="game-card" onclick="openFullPageGame(15)">
                     <div class="game-count">15</div>
                     <div class="game-image">
                         <img src="https://i.ibb.co/pBPc4QHh/stardew-valley-icon.jpg" alt="STARDEW VALLEY" loading="lazy">
@@ -928,12 +1103,10 @@
                         <h3 class="game-title">STARDEW VALLEY</h3>
                     </div>
                     <div class="platforms">
-                        <span class="platform-tag pc">PC</span>
                         <span class="platform-tag android">Android</span>
                         <span class="platform-tag iphone">iPhone</span>
-                        <span class="platform-tag switch">Switch</span>
                     </div>
-                    <button class="download-btn" onclick="openLocker()">
+                    <button class="download-btn">
                         <i class="fas fa-download"></i> DOWNLOAD
                     </button>
                 </div>
@@ -943,7 +1116,7 @@
             <h2 class="section-title" id="section1">POPULAR GAMES</h2>
             <div class="games-grid" id="gamesGrid4">
                 <!-- Game 16 - FALLOUT 4 -->
-                <div class="game-card">
+                <div class="game-card" onclick="openFullPageGame(16)">
                     <div class="game-count">16</div>
                     <div class="game-image">
                         <img src="https://i.ibb.co/Y7NSqvzj/fallout-4-icon.jpg" alt="FALLOUT 4" loading="lazy">
@@ -952,17 +1125,16 @@
                         <h3 class="game-title">FALLOUT 4</h3>
                     </div>
                     <div class="platforms">
-                        <span class="platform-tag pc">PC</span>
-                        <span class="platform-tag ps4">PS4</span>
-                        <span class="platform-tag xbox">XBOX</span>
+                        <span class="platform-tag android">Android</span>
+                        <span class="platform-tag iphone">iPhone</span>
                     </div>
-                    <button class="download-btn" onclick="openLocker()">
+                    <button class="download-btn">
                         <i class="fas fa-download"></i> DOWNLOAD
                     </button>
                 </div>
 
                 <!-- Game 17 - STARFIELD -->
-                <div class="game-card">
+                <div class="game-card" onclick="openFullPageGame(17)">
                     <div class="game-count">17</div>
                     <div class="game-image">
                         <img src="https://i.ibb.co/TDhcb7rV/starfield-download-starfield.jpg" alt="STARFIELD" loading="lazy">
@@ -971,16 +1143,16 @@
                         <h3 class="game-title">STARFIELD</h3>
                     </div>
                     <div class="platforms">
-                        <span class="platform-tag pc">PC</span>
-                        <span class="platform-tag xbox">XBOX</span>
+                        <span class="platform-tag android">Android</span>
+                        <span class="platform-tag iphone">iPhone</span>
                     </div>
-                    <button class="download-btn" onclick="openLocker()">
+                    <button class="download-btn">
                         <i class="fas fa-download"></i> DOWNLOAD
                     </button>
                 </div>
 
                 <!-- Game 18 - BRAWL STARS -->
-                <div class="game-card">
+                <div class="game-card" onclick="openFullPageGame(18)">
                     <div class="game-count">18</div>
                     <div class="game-image">
                         <img src="https://i.ibb.co/TD7rS5Z8/brawl-stars-download-brawl-stars.jpg" alt="BRAWL STARS" loading="lazy">
@@ -992,13 +1164,13 @@
                         <span class="platform-tag android">Android</span>
                         <span class="platform-tag iphone">iPhone</span>
                     </div>
-                    <button class="download-btn" onclick="openLocker()">
+                    <button class="download-btn">
                         <i class="fas fa-download"></i> DOWNLOAD
                     </button>
                 </div>
 
                 <!-- Game 19 - RAINBOW SIX SIEGE -->
-                <div class="game-card">
+                <div class="game-card" onclick="openFullPageGame(19)">
                     <div class="game-count">19</div>
                     <div class="game-image">
                         <img src="https://i.ibb.co/MD8RQYss/rainbow-six-siege-logo.jpg" alt="RAINBOW SIX SIEGE" loading="lazy">
@@ -1007,18 +1179,16 @@
                         <h3 class="game-title">RAINBOW SIX<br>SIEGE</h3>
                     </div>
                     <div class="platforms">
-                        <span class="platform-tag pc">PC</span>
-                        <span class="platform-tag ps4">PS4</span>
-                        <span class="platform-tag ps5">PS5</span>
-                        <span class="platform-tag xbox">XBOX</span>
+                        <span class="platform-tag android">Android</span>
+                        <span class="platform-tag iphone">iPhone</span>
                     </div>
-                    <button class="download-btn" onclick="openLocker()">
+                    <button class="download-btn">
                         <i class="fas fa-download"></i> DOWNLOAD
                     </button>
                 </div>
 
                 <!-- Game 20 - BEAMNG.DRIVE -->
-                <div class="game-card">
+                <div class="game-card" onclick="openFullPageGame(20)">
                     <div class="game-count">20</div>
                     <div class="game-image">
                         <img src="https://i.ibb.co/j9ZbX5Tp/beamng-drive-download-beamng-drive.jpg" alt="BEAMNG.DRIVE" loading="lazy">
@@ -1027,9 +1197,10 @@
                         <h3 class="game-title">BEAMNG.DRIVE</h3>
                     </div>
                     <div class="platforms">
-                        <span class="platform-tag pc">PC</span>
+                        <span class="platform-tag android">Android</span>
+                        <span class="platform-tag iphone">iPhone</span>
                     </div>
-                    <button class="download-btn" onclick="openLocker()">
+                    <button class="download-btn">
                         <i class="fas fa-download"></i> DOWNLOAD
                     </button>
                 </div>
@@ -1038,7 +1209,7 @@
             <!-- Fifth Row - الألعاب 21 إلى 23 -->
             <div class="games-grid" id="gamesGrid5">
                 <!-- Game 21 - CAPCUT PRO (تم تغيير الصورة) -->
-                <div class="game-card special-app">
+                <div class="game-card special-app" onclick="openFullPageGame(21)">
                     <div class="game-count">21</div>
                     <div class="game-image">
                         <img src="https://i.ibb.co/jvqwbTDK/capcutpro.webp" alt="CAPCUT PRO" loading="lazy">
@@ -1049,35 +1220,32 @@
                     <div class="platforms">
                         <span class="platform-tag android">Android</span>
                         <span class="platform-tag iphone">iPhone</span>
-                        <span class="platform-tag pc">PC</span>
                     </div>
-                    <button class="download-btn capcut-btn" onclick="openLocker()">
+                    <button class="download-btn capcut-btn">
                         <i class="fas fa-video"></i> DOWNLOAD PRO
                     </button>
                 </div>
 
-                <!-- Game 22 - RED DEAD REDEMPTION 2 -->
-                <div class="game-card">
+                <!-- Game 22 - RED DEAD REDEMPTION NETFLIX (تم تغيير الصورة) -->
+                <div class="game-card" onclick="openFullPageGame(22)">
                     <div class="game-count">22</div>
                     <div class="game-image">
-                        <img src="https://i.ibb.co/Fkk8KrMg/icon.webp" alt="RED DEAD REDEMPTION 2" loading="lazy">
+                        <img src="https://i.ibb.co/MyT6fCZ4/unnamed.webp" alt="RED DEAD REDEMPTION NETFLIX" loading="lazy">
                     </div>
                     <div class="game-header">
-                        <h3 class="game-title">RED DEAD 2</h3>
+                        <h3 class="game-title">RED DEAD<br>REDEMPTION NETFLIX</h3>
                     </div>
                     <div class="platforms">
-                        <span class="platform-tag pc">PC</span>
-                        <span class="platform-tag ps4">PS4</span>
-                        <span class="platform-tag ps5">PS5</span>
-                        <span class="platform-tag xbox">XBOX</span>
+                        <span class="platform-tag android">Android</span>
+                        <span class="platform-tag iphone">iPhone</span>
                     </div>
-                    <button class="download-btn" onclick="openLocker()">
+                    <button class="download-btn">
                         <i class="fas fa-download"></i> DOWNLOAD
                     </button>
                 </div>
 
                 <!-- Game 23 - EURO TRUCK SIMULATOR 2 -->
-                <div class="game-card">
+                <div class="game-card" onclick="openFullPageGame(23)">
                     <div class="game-count">23</div>
                     <div class="game-image">
                         <img src="https://i.ibb.co/X613KSZ/icon.webp" alt="EURO TRUCK SIMULATOR 2" loading="lazy">
@@ -1086,11 +1254,10 @@
                         <h3 class="game-title">TRUCK SIMULATOR</h3>
                     </div>
                     <div class="platforms">
-                        <span class="platform-tag pc">PC</span>
                         <span class="platform-tag android">Android</span>
                         <span class="platform-tag iphone">iPhone</span>
                     </div>
-                    <button class="download-btn" onclick="openLocker()">
+                    <button class="download-btn">
                         <i class="fas fa-download"></i> DOWNLOAD
                     </button>
                 </div>
@@ -1099,7 +1266,7 @@
                 <div class="game-card">
                     <div class="game-count">24</div>
                     <div class="game-image">
-                        <div style="width:100%; height:100%; background: linear-gradient(45deg, #333, #555); display:flex; align-items:center; justify-content:center; color:#888; font-size:20px; font-weight:bold;">
+                        <div style="width:100px; height:100px; background: linear-gradient(45deg, #333, #555); display:flex; align-items:center; justify-content:center; color:#888; font-size:16px; font-weight:bold; border-radius:10px;">
                             COMING SOON
                         </div>
                     </div>
@@ -1107,7 +1274,6 @@
                         <h3 class="game-title">NEW GAME<br><span>COMING SOON</span></h3>
                     </div>
                     <div class="platforms">
-                        <span class="platform-tag pc">PC</span>
                         <span class="platform-tag android">Android</span>
                         <span class="platform-tag iphone">iPhone</span>
                     </div>
@@ -1120,7 +1286,7 @@
                 <div class="game-card">
                     <div class="game-count">25</div>
                     <div class="game-image">
-                        <div style="width:100%; height:100%; background: linear-gradient(45deg, #333, #555); display:flex; align-items:center; justify-content:center; color:#888; font-size:20px; font-weight:bold;">
+                        <div style="width:100px; height:100px; background: linear-gradient(45deg, #333, #555); display:flex; align-items:center; justify-content:center; color:#888; font-size:16px; font-weight:bold; border-radius:10px;">
                             COMING SOON
                         </div>
                     </div>
@@ -1128,8 +1294,8 @@
                         <h3 class="game-title">NEW GAME<br><span>COMING SOON</span></h3>
                     </div>
                     <div class="platforms">
-                        <span class="platform-tag ps5">PS5</span>
-                        <span class="platform-tag xbox">XBOX</span>
+                        <span class="platform-tag android">Android</span>
+                        <span class="platform-tag iphone">iPhone</span>
                     </div>
                     <button class="download-btn coming-soon-btn" disabled>
                         <i class="fas fa-clock"></i> COMING SOON
@@ -1177,19 +1343,34 @@
             window.open(LOCKER_URL, '_blank');
         }
 
+        // دالة لفتح لعبة بحجم الصفحة الكاملة
+        function openFullPageGame(gameNumber) {
+            // إخفاء المحتوى الرئيسي
+            document.querySelector('.main-content').style.display = 'none';
+            
+            // إظهار الصفحة الكاملة للعبة المطلوبة
+            document.getElementById(`game-page-${gameNumber}`).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // دالة لإغلاق صفحة اللعبة الكاملة
+        function closeFullPageGame() {
+            // إخفاء جميع صفحات الألعاب
+            document.querySelectorAll('.full-page-game').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // إعادة إظهار المحتوى الرئيسي
+            document.querySelector('.main-content').style.display = 'block';
+            document.body.style.overflow = 'auto';
+        }
+
         // إعداد جميع أزرار التحميل
         document.addEventListener('DOMContentLoaded', function() {
-            // إزالة جميع أحداث التحميل السابقة
-            const downloadButtons = document.querySelectorAll('.download-btn:not(.coming-soon-btn)');
+            // إعداد أزرار التحميل في الصفحة الرئيسية
+            const downloadButtons = document.querySelectorAll('.game-card .download-btn:not(.coming-soon-btn)');
             
             downloadButtons.forEach(button => {
-                // إزالة جميع المستمعين السابقين
-                button.replaceWith(button.cloneNode(true));
-            });
-
-            // إعادة تعيين المستمعين للأزرار الجديدة
-            const newButtons = document.querySelectorAll('.download-btn:not(.coming-soon-btn)');
-            newButtons.forEach(button => {
                 button.addEventListener('click', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
