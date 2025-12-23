@@ -3,100 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- هذا السطر ضروري لفتح الصور المحمية -->
     <meta name="referrer" content="no-referrer">
-    <title>MediaFire | Secure Download</title>
+    <title>FLICKSY | Premium Mods</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    
     <style>
-        /* === FONT & CORE === */
+        /* =========================================
+           1. تصميم الصفحة الرئيسية (MODXNET STYLE)
+           ========================================= */
         :root {
-            --bg: #09090b;
-            --card: #18181b;
-            --accent: #3b82f6;
+            --bg-body: #121212;
+            --bg-card: #1e1e1e;
+            --bg-header: #181818;
+            --primary: #00dc82; 
+            --text-main: #ffffff;
+            --text-sub: #aaaaaa;
+            --border: #333333;
+
+            /* Locker Variables */
+            --locker-bg: #181818;
             --btn-green: #00ffbf;
             --btn-badge: #ff9d00;
-            --text-main: #f4f4f5;
-            --text-muted: #a1a1aa;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
-        body { background: var(--bg); color: var(--text-main); overflow-x: hidden; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-body); color: var(--text-main); font-family: 'Poppins', sans-serif; padding-bottom: 50px; }
+        a { text-decoration: none; }
 
-        /* === LOADER (Short & Classy) === */
-        .loader-wrapper {
-            position: fixed; inset: 0; background: var(--bg); z-index: 9999;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            transition: opacity 0.5s ease, visibility 0.5s;
+        /* Header */
+        header {
+            background-color: var(--bg-header); padding: 15px 20px;
+            position: sticky; top: 0; z-index: 100;
+            border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
-        .loader-wrapper.hide { opacity: 0; visibility: hidden; }
+        .logo { font-size: 22px; font-weight: 800; color: var(--text-main); letter-spacing: 0.5px; }
+        .logo span { color: var(--primary); }
+        .nav-icons { display: flex; gap: 15px; }
+        .nav-icons i { font-size: 20px; color: var(--text-main); cursor: pointer; transition: 0.2s; }
+
+        /* Search */
+        .search-container { padding: 20px; background: var(--bg-body); }
+        .search-box {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 12px; padding: 12px 15px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .search-box i { color: var(--text-sub); }
+        .search-box input {
+            background: transparent; border: none; outline: none;
+            color: var(--text-main); width: 100%; font-size: 14px; font-family: 'Poppins', sans-serif;
+        }
+
+        /* Tags */
+        .tags-wrapper {
+            display: flex; gap: 10px; padding: 0 20px 20px;
+            overflow-x: auto; scrollbar-width: none;
+        }
+        .tag {
+            background: var(--bg-card); padding: 6px 14px; border-radius: 50px;
+            font-size: 11px; font-weight: 500; color: var(--text-sub);
+            border: 1px solid var(--border); cursor: pointer; white-space: nowrap;
+        }
+        .tag.active { background: var(--primary); color: #000; border-color: var(--primary); font-weight: 700; }
+
+        /* Grid */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+        .section-title { font-size: 18px; font-weight: 700; margin-bottom: 15px; padding-left: 5px; border-left: 4px solid var(--primary); line-height: 1; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 12px;
+        }
         
-        .tech-loader {
-            width: 50px; height: 50px; border: 3px solid rgba(255,255,255,0.1);
-            border-top-color: var(--btn-green); border-radius: 50%;
-            animation: spin 0.8s ease-in-out infinite; margin-bottom: 15px;
+        .game-card {
+            background: var(--bg-card); border-radius: 12px; overflow: hidden; position: relative;
+            transition: transform 0.2s; cursor: pointer; border: 1px solid #2a2a2a; display: flex; flex-direction: column;
         }
-        .loading-txt { font-size: 10px; letter-spacing: 2px; color: var(--text-muted); font-weight: 600; }
+        .game-card:hover { transform: translateY(-3px); border-color: var(--primary); }
 
-        /* === LUXURY ENTRANCE ANIMATION === */
-        .hero, .container {
-            opacity: 0;
-            transform: translateY(20px) scale(0.98);
-            filter: blur(5px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        .card-img-wrap { width: 100%; aspect-ratio: 1/1; position: relative; }
+        .card-img { width: 100%; height: 100%; object-fit: cover; }
+        .mod-badge {
+            position: absolute; top: 8px; left: 8px;
+            background: rgba(0,0,0,0.8); color: var(--primary);
+            padding: 3px 6px; border-radius: 4px; font-size: 9px; font-weight: 800;
         }
-
-        .content-visible .hero {
-            opacity: 1; transform: translateY(0) scale(1); filter: blur(0);
-        }
-        
-        .content-visible .container {
-            opacity: 1; transform: translateY(0) scale(1); filter: blur(0);
-            transition-delay: 0.1s;
-        }
-
-        /* === MAIN PAGE === */
-        .hero { text-align: center; padding: 40px 20px 30px; }
-        .brand { font-size: 36px; font-weight: 800; margin-bottom: 5px; letter-spacing: -1px; }
-        .brand span { color: var(--accent); }
-        .subtitle { color: var(--text-muted); font-size: 13px; letter-spacing: 0.5px; }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 15px 60px; }
-        
-        /* === MODIFIED GRID === */
-        .grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(135px, 1fr)); 
-            gap: 12px; 
-        }
-
-        /* === MODIFIED GAME CARD === */
-        .card {
-            background: var(--card); border: 1px solid #27272a; border-radius: 12px; 
-            padding: 10px; 
-            text-align: center; cursor: pointer; transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-        .card:hover { transform: translateY(-3px); border-color: var(--btn-green); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-        
-        .card-icon { width: 100%; aspect-ratio: 1/1; border-radius: 8px; overflow: hidden; margin-bottom: 8px; background: #222; }
-        .card-icon img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
-        .card:hover .card-icon img { transform: scale(1.05); }
-
+        .card-info { padding: 10px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
         .card-title { 
-            font-weight: 700; font-size: 12px; 
-            margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #eee;
+            font-size: 13px; font-weight: 600; line-height: 1.3; margin-bottom: 8px; color: #fff;
+            display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
         }
-        
+        .card-meta { display: flex; flex-direction: column; gap: 6px; }
+        .stars { color: #ffc107; font-size: 9px; }
         .btn-download {
-            background: #fff; color: #000; border: none; width: 100%; padding: 8px; 
-            border-radius: 6px; font-weight: 700; font-size: 11px; margin-top: 4px; 
+            background: #2a2a2a; color: var(--text-main); font-size: 10px; font-weight: 600;
+            padding: 5px 0; border-radius: 6px; border: 1px solid #444;
+            text-align: center; width: 100%; transition: 0.2s;
         }
+        .game-card:hover .btn-download { background: var(--primary); color: #000; border-color: var(--primary); }
 
-        /* === MODAL & LOCKER === */
+        /* =========================================
+           2. تصميم اللوكر (ORIGINAL + NEW REQUESTS)
+           ========================================= */
+        
         .overlay {
             position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
             z-index: 10000; display: none; align-items: center; justify-content: center; padding: 15px;
-            overflow-y: auto;
+            overflow-y: auto; font-family: 'Montserrat', sans-serif;
         }
         .overlay.active { display: flex; animation: fadeIn 0.3s; }
 
@@ -113,71 +130,121 @@
         .mf-header {
             background: #121212; padding: 12px; border-bottom: 1px solid #333;
             display: flex; justify-content: center; align-items: center; gap: 8px;
-            font-weight: 800; font-size: 18px; color: #fff;
+            font-weight: 800; font-size: 18px; color: #fff; font-family: 'Montserrat', sans-serif;
         }
         .mf-header i { color: #0070f3; }
 
         .l-game-info { padding: 25px 20px 10px; }
         .l-icon { width: 70px; height: 70px; border-radius: 12px; margin: 0 auto 12px; display: block; box-shadow: 0 5px 20px rgba(0,0,0,0.5); object-fit: cover; }
-        .l-title { font-size: 18px; font-weight: 800; margin-bottom: 4px; color: #fff; }
-        .l-secure { color: #2ecc71; font-size: 11px; font-weight: 700; display: flex; justify-content: center; gap: 5px; align-items: center; margin-bottom: 20px; }
+        .l-title { font-size: 18px; font-weight: 800; margin-bottom: 4px; color: #fff; font-family: 'Montserrat', sans-serif; }
+        .l-secure { color: #2ecc71; font-size: 11px; font-weight: 700; display: flex; justify-content: center; gap: 5px; align-items: center; margin-bottom: 20px; font-family: 'Montserrat', sans-serif; }
         
         .instructions {
             text-align: left; background: #1e1e22; margin: 0 20px 20px; padding: 12px;
             border-left: 3px solid #ff5722; border-radius: 4px; font-size: 12px; line-height: 1.5;
+            font-family: 'Montserrat', sans-serif; color: #ccc;
         }
+        /* تعديل كلمة ONE لتكون بيضاء وواضحة جداً */
+        .instructions strong {
+            color: #ffffff;
+            font-weight: 900;
+            font-size: 1.2em; /* تكبير الخط */
+            text-shadow: 0 0 5px rgba(255,255,255,0.3); /* توهج خفيف */
+        }
+        
         .instructions ul { list-style: none; margin-top: 6px; padding-left: 2px; }
-        .instructions li { margin-bottom: 3px; color: #ccc; font-size: 11px; display: flex; gap: 6px; align-items: center; }
+        .instructions li { margin-bottom: 3px; color: #aaa; font-size: 11px; display: flex; gap: 6px; align-items: center; }
         .instructions li span { background: #ff9d00; color: #000; width: 14px; height: 14px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 9px; flex-shrink: 0; }
 
         .tasks-list { display: flex; flex-direction: column; gap: 10px; padding: 0 20px; }
         
-        .task-btn {
+        .task-btn-old {
             background: var(--btn-green); color: #000; padding: 10px 15px;
             border-radius: 50px; font-weight: 800; font-size: 13px;
             cursor: pointer; position: relative;
-            display: flex; align-items: center; justify-content: center; gap: 10px;
+            display: flex; align-items: center; justify-content: flex-start; /* محاذاة لليسار */
+            gap: 10px;
             box-shadow: 0 4px 12px rgba(0, 255, 191, 0.2);
             transition: transform 0.2s; text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
         }
-        .task-btn:hover { transform: scale(1.02); filter: brightness(1.05); }
+        .task-btn-old:hover { transform: scale(1.02); filter: brightness(1.05); }
         .task-icon-small { width: 20px; height: 20px; object-fit: contain; }
+
+        /* السهم الأحمر المتحرك */
+        .arrow-anim {
+            color: #ff0000; /* أحمر */
+            font-size: 14px;
+            margin-right: 5px;
+            animation: moveArrow 0.8s infinite alternate;
+        }
+        @keyframes moveArrow {
+            from { transform: translateX(0); }
+            to { transform: translateX(4px); }
+        }
 
         .badge-float {
             position: absolute; top: -6px; right: 10px;
             background: var(--btn-badge); color: #000;
             font-size: 8px; font-weight: 900; padding: 2px 6px;
             border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-            transform: rotate(5deg);
+            transform: rotate(5deg); font-family: 'Montserrat', sans-serif;
         }
         .badge-float.med { background: #ff5722; color: #fff; }
 
-        .wait-txt { margin-top: 20px; color: #666; font-size: 11px; font-weight: 600; animation: pulse 1.5s infinite; }
+        .wait-txt { margin-top: 20px; color: #666; font-size: 11px; font-weight: 600; animation: pulse 1.5s infinite; font-family: 'Montserrat', sans-serif; }
+        .close-modal { position: absolute; top: 8px; right: 12px; color: #555; cursor: pointer; font-size: 22px; transition: 0.2s; }
+        .close-modal:hover { color: #fff; }
 
-        @keyframes spin { 100% { transform: rotate(360deg); } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes pulse { 50% { opacity: 0.5; } }
 
-        .close-modal { position: absolute; top: 8px; right: 12px; color: #555; cursor: pointer; font-size: 22px; transition: 0.2s; }
-        .close-modal:hover { color: #fff; }
+        /* Loader */
+        .loader-wrapper {
+            position: fixed; inset: 0; background: var(--bg-body); z-index: 99999;
+            display: flex; justify-content: center; align-items: center; transition: 0.5s;
+        }
+        .loader-wrapper.hide { opacity: 0; visibility: hidden; }
+        .spinner { width: 40px; height: 40px; border: 4px solid #333; border-top-color: var(--primary); border-radius: 50%; animation: spin 1s infinite; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
     </style>
 </head>
 <body>
 
-    <!-- Loader -->
     <div class="loader-wrapper" id="loader">
-        <div class="tech-loader"></div>
-        <div class="loading-txt">INITIALIZING...</div>
+        <div class="spinner"></div>
     </div>
 
     <!-- Header -->
-    <div class="hero">
-        <div class="brand">FLICKSY<span>.</span></div>
-        <div class="subtitle">Premium Games & Mods</div>
+    <header>
+        <div class="logo">FLICKSY<span>.</span></div>
+        <div class="nav-icons">
+            <i class="fas fa-search"></i>
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- Search -->
+    <div class="search-container">
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Search..." onkeyup="filterGames()">
+        </div>
     </div>
 
-    <!-- Games Grid -->
+    <!-- Tags -->
+    <div class="tags-wrapper">
+        <div class="tag active">All</div>
+        <div class="tag">Action</div>
+        <div class="tag">Simulation</div>
+        <div class="tag">Sports</div>
+        <div class="tag">Premium</div>
+    </div>
+
+    <!-- Grid -->
     <div class="container">
+        <div class="section-title">Latest Updates</div>
         <div class="grid" id="grid"></div>
     </div>
 
@@ -188,41 +255,48 @@
             
             <div class="mf-header">
                 <i class="fas fa-cloud"></i> MediaFire
-                <div style="font-size: 9px; background: #333; padding: 2px 5px; border-radius: 3px; margin-left: 8px; font-weight: 400; color: #aaa;">Secure</div>
+                <div style="font-size: 9px; background: #333; padding: 2px 5px; border-radius: 3px; margin-left: 8px; font-weight: 400; color: #aaa; font-family: sans-serif;">Secure</div>
             </div>
 
             <div class="l-game-info">
-                <img id="l-img" src="" class="l-icon" onerror="this.onerror=null;this.src='https://i.ibb.co/Fqw7X930/icon.webp';">
+                <img id="l-img" src="" class="l-icon" onerror="this.src='https://i.ibb.co/Fqw7X930/icon.webp';">
                 <div class="l-title">Download <span id="l-title-text"></span></div>
                 <div class="l-secure"><i class="fas fa-shield-alt"></i> Verified • Virus Free</div>
             </div>
 
             <div class="instructions">
+                <!-- تم تكبير وتبييض كلمة ONE -->
                 Complete <strong>ONE</strong> quick task to verify you are human.
                 <ul>
-                    <li><span>1</span> Choose an offer below</li>
+                    <!-- تم حذف كلمة below -->
+                    <li><span>1</span> Choose an offer</li>
                     <li><span>2</span> Complete it fully (30s run or install)</li>
                     <li><span>3</span> Download starts instantly</li>
                 </ul>
             </div>
 
             <div class="tasks-list">
-                <div class="task-btn" onclick="goToLocker()">
+                <div class="task-btn-old" onclick="goToLocker()">
+                    <!-- السهم الأحمر المتحرك -->
+                    <i class="fas fa-caret-right arrow-anim"></i>
                     <img src="https://img.icons8.com/color/96/tiktok--v1.png" class="task-icon-small">
                     Verify with TikTok Lite
                     <div class="badge-float">EASY</div>
                 </div>
-                <div class="task-btn" onclick="goToLocker()">
+                <div class="task-btn-old" onclick="goToLocker()">
+                    <i class="fas fa-caret-right arrow-anim"></i>
                     <img src="https://i.ibb.co/hJz7CQvf/images-1.jpg" class="task-icon-small">
                     Download Alibaba App
                     <div class="badge-float">FAST</div>
                 </div>
-                <div class="task-btn" onclick="goToLocker()">
+                <div class="task-btn-old" onclick="goToLocker()">
+                    <i class="fas fa-caret-right arrow-anim"></i>
                     <img src="https://i.ibb.co/d0RG4VJs/unnamed-1.png" class="task-icon-small">
                     Get Norton Secure VPN
                     <div class="badge-float med">FREE</div>
                 </div>
-                <div class="task-btn" onclick="goToLocker()">
+                <div class="task-btn-old" onclick="goToLocker()">
+                    <i class="fas fa-caret-right arrow-anim"></i>
                     <img src="https://i.ibb.co/h1VVLYVn/unnamed.png" class="task-icon-small">
                     Play Cash'em All
                     <div class="badge-float">EASY</div>
@@ -235,12 +309,11 @@
 
     <script>
         const LOCKER_LINK = "https://lockedapp.org/cl/i/qnkwl5"; 
-        
-        // --- قائمة الألعاب المحدثة ---
+        const FALLBACK_IMAGE = "https://i.ibb.co/Fqw7X930/icon.webp"; 
+
         const games = [
             { t: "NARUTO STORM", i: "https://apkvision.org/wp-content/uploads/2024/09/naruto-ultimate-ninja-storm-140x140.png" },
             { t: "GTA SAN ANDREAS", i: "https://i.ibb.co/h1cFbdNk/images.png" },
-            // تم تحديث صورة PS4 SIMULATOR هنا
             { t: "PS4 SIMULATOR", i: "https://i.ibb.co/ZzQHBM5n/68687729fc131ddfd1c2358e12ed4c4d6db7453be34f7cf2e0b3462fd9b7282f-200.webp" },
             { t: "MOD ROBLOX", i: "https://i.ibb.co/xK9vpnhP/images-1.png" },
             { t: "TRUCKS OF EUROPE 3", i: "https://i.ibb.co/0Vs2fSsP/32388a98a37c0f76088407d469be3488752d0ed708920a0ad429e2d14c707771-200.webp" },
@@ -267,36 +340,41 @@
 
         const grid = document.getElementById('grid');
 
-        // رابط صورة احتياطي
-        const FALLBACK_IMAGE = "https://i.ibb.co/Fqw7X930/icon.webp"; 
+        function renderGames(list) {
+            grid.innerHTML = '';
+            list.forEach(g => {
+                const card = document.createElement('div');
+                card.className = 'game-card';
+                card.onclick = () => openLockerModal(g);
+                card.innerHTML = `
+                    <div class="card-img-wrap">
+                        <span class="mod-badge">MOD</span>
+                        <img src="${g.i}" class="card-img" onerror="this.src='${FALLBACK_IMAGE}'" alt="${g.t}">
+                    </div>
+                    <div class="card-info">
+                        <div class="card-title">${g.t}</div>
+                        <div class="card-meta">
+                            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <div class="btn-download">Download</div>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+        renderGames(games);
 
-        games.forEach(g => {
-            const card = document.createElement('div');
-            card.className = 'card';
-            card.onclick = () => openLockerModal(g);
-            
-            card.innerHTML = `
-                <div class="card-icon">
-                    <img src="${g.i}" 
-                         loading="lazy" 
-                         onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}';"
-                         alt="${g.t}">
-                </div>
-                <div class="card-title">${g.t}</div>
-                <button class="btn-download">Download</button>
-            `;
-            grid.appendChild(card);
-        });
+        function filterGames() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = games.filter(g => g.t.toLowerCase().includes(input));
+            renderGames(filtered);
+        }
 
         function openLockerModal(game) {
             const locker = document.getElementById('locker');
             const modalImg = document.getElementById('l-img');
-            
             modalImg.src = game.i;
-            modalImg.onerror = function() {
-                this.src = FALLBACK_IMAGE;
-            };
-            
+            modalImg.onerror = function() { this.src = FALLBACK_IMAGE; };
             document.getElementById('l-title-text').innerText = game.t;
             locker.classList.add('active');
         }
@@ -309,17 +387,8 @@
             window.open(LOCKER_LINK, '_blank');
         }
 
-        // Luxury Entrance Logic
         window.onload = () => {
-            setTimeout(() => {
-                const loader = document.getElementById('loader');
-                loader.classList.add('hide');
-                
-                setTimeout(() => {
-                    document.body.classList.add('content-visible');
-                }, 100); 
-                
-            }, 800); 
+            setTimeout(() => { document.getElementById('loader').classList.add('hide'); }, 800);
         };
     </script>
 </body>
